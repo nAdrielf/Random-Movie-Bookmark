@@ -18,6 +18,7 @@ export const categories = [
     cat: 'Documentaries',
   },
 ];
+
 export const popularProducts = [
   {
     id: 1,
