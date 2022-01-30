@@ -17,6 +17,7 @@ const FilterCont = styled.div`
   display: flex;
   justify-content: space-between;
   margin: 0 150px;
+  padding-bottom: 30px;
   ${mobile({ margin: '0 40px', width: '100%', height: '100%' })}
   ${tablet({ marginLeft: '60px' })}
 `;

@@ -13,7 +13,8 @@ const Wrap = styled.div`
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  margin: 30px 0;
+  padding: 30px 0;
+  background-color: #f8f8f8;
 `;
 const Title = styled.h1``;
 const Container = styled.div`
@@ -110,7 +111,7 @@ const Products = ({ category, filters }) => {
   }, [films, category, filters]);
   return (
     <Wrap>
-      <Title>Our Collections</Title>
+      <Title>Collections</Title>
       <Container>
         {category
           ? filteredFilms.map((item) => (
