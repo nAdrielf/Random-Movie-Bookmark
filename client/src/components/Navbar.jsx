@@ -8,7 +8,6 @@ import { mobile } from '../responsive';
 
 const Nav = styled.div`
   letter-spacing: 3px;
-  height: 9vh;
   ${mobile({ width: '100%' })}
 `;
 const Wrapper = styled.div`
@@ -19,8 +18,9 @@ const Wrapper = styled.div`
   margin: 0 50px;
   ${mobile({ justifyContent: 'space-around', margin: '0px' })}
 `;
-const Left = styled.div``;
-
+const Left = styled.div`
+  flex: 1;
+`;
 const Center = styled.div`
   flex: 1;
   display: flex;
@@ -33,9 +33,9 @@ const Logo = styled.h1`
   cursor: pointer;
 `;
 const Right = styled.div`
-  flex: 2;
+  flex: 1;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
 `;
 const MenuItem = styled.div`
   font-size: 14;
@@ -50,48 +50,22 @@ const Navbar = () => {
     <Nav>
       <Wrapper>
         <Left>
-          <Logo>
-            <Link style={{ textDecoration: 'none', color: 'black' }} to="/">
-              .FILM.
-            </Link>
-          </Logo>
+          <Link style={{ textDecoration: 'none', color: 'black' }} to="/">
+            <Logo>.FILM.</Logo>
+          </Link>
         </Left>
         <Center></Center>
         <Right>
           <Link
-            to={`/films/All`}
+            to="/bookmark"
             style={{ textDecoration: 'none', color: 'black' }}
           >
-            VIEW ALL
-          </Link>
-          <Link
-            to={`/films/TV SERIES`}
-            style={{ textDecoration: 'none', color: 'black' }}
-          >
-            TV SERIES
-          </Link>
-          <Link
-            to={`/films/MOVIES`}
-            style={{ textDecoration: 'none', color: 'black' }}
-          >
-            MOVIES
-          </Link>
-          <Link
-            to={`/films/DOCUMENTARIES`}
-            style={{ textDecoration: 'none', color: 'black' }}
-          >
-            DOCUMENTARIES
-          </Link>
-          <MenuItem>
-            <Link
-              to="/bookmark"
-              style={{ textDecoration: 'none', color: 'black' }}
-            >
+            <MenuItem>
               <Badge badgeContent={quantity} color="primary">
                 <BookmarkBorderIcon />
               </Badge>
-            </Link>
-          </MenuItem>
+            </MenuItem>
+          </Link>
         </Right>
       </Wrapper>
     </Nav>
