@@ -85,11 +85,14 @@ const Search = styled.button`
 
 const Products = ({ category, filters }) => {
   const [films, setFilms] = useState([]);
+  const [filteredFilms, setFilteredFilms] = useState([]);
 
   useEffect(() => {
     const getFilms = async () => {
       try {
-        const res = await publicRequest.get('/films');
+        const res = await publicRequest.get(
+          category ? `/films?category={category}` : '/films'
+        );
         setFilms(res.data);
       } catch (err) {}
     };
@@ -97,9 +100,11 @@ const Products = ({ category, filters }) => {
   }, [category]);
   useEffect(() => {
     category &&
-      films.filter((item) =>
-        Object.entries(filters).every(([key, value]) =>
-          item[key].includes(value)
+      setFilteredFilms(
+        films.filter((item) =>
+          Object.entries(filters).every(([key, value]) =>
+            item[key].includes(value)
+          )
         )
       );
   }, [films, category, filters]);
@@ -107,23 +112,41 @@ const Products = ({ category, filters }) => {
     <Wrap>
       <Title>Our Collections</Title>
       <Container>
-        {films.map((item) => (
-          <Product item={item} key={item._id}>
-            <Image src={item.img} />
-            <Overlay>
-              <Icons>
-                <Search>
-                  <Link
-                    to={`/film/${item._id}`}
-                    style={{ textDecoration: 'none' }}
-                  >
-                    <SearchOutlinedIcon />
-                  </Link>
-                </Search>
-              </Icons>
-            </Overlay>
-          </Product>
-        ))}
+        {category
+          ? filteredFilms.map((item) => (
+              <Product item={item} key={item._id}>
+                <Image src={item.img} />
+                <Overlay>
+                  <Icons>
+                    <Search>
+                      <Link
+                        to={`/film/${item._id}`}
+                        style={{ textDecoration: 'none' }}
+                      >
+                        <SearchOutlinedIcon />
+                      </Link>
+                    </Search>
+                  </Icons>
+                </Overlay>
+              </Product>
+            ))
+          : films.slice(0, 8).map((item) => (
+              <Product item={item} key={item._id}>
+                <Image src={item.img} />
+                <Overlay>
+                  <Icons>
+                    <Search>
+                      <Link
+                        to={`/film/${item._id}`}
+                        style={{ textDecoration: 'none' }}
+                      >
+                        <SearchOutlinedIcon />
+                      </Link>
+                    </Search>
+                  </Icons>
+                </Overlay>
+              </Product>
+            ))}
       </Container>
     </Wrap>
   );
