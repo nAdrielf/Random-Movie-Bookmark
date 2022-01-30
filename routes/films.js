@@ -17,7 +17,8 @@ routerFilms.post('/', verifyTokennAdmin, async (req, res) => {
     res.status(500).json(err);
   }
 });
-// update
+
+// Update
 routerFilms.put('/:id', verifyTokennAdmin, async (req, res) => {
   try {
     const updateFilm = await Films.findByIdAndUpdate(
@@ -32,6 +33,7 @@ routerFilms.put('/:id', verifyTokennAdmin, async (req, res) => {
     res.status(500).json(err);
   }
 });
+
 // delete
 routerFilms.delete('/:id', verifyTokennAdmin, async (req, res) => {
   try {
@@ -41,6 +43,7 @@ routerFilms.delete('/:id', verifyTokennAdmin, async (req, res) => {
     res.status(500).json(err);
   }
 });
+
 // get film by id
 routerFilms.get('/find/:id', async (req, res) => {
   try {
@@ -50,6 +53,7 @@ routerFilms.get('/find/:id', async (req, res) => {
     res.status(500).json(err);
   }
 });
+
 // get all films
 routerFilms.get('/', async (req, res) => {
   const qNew = req.query.new;
@@ -72,6 +76,5 @@ routerFilms.get('/', async (req, res) => {
     res.status(500).json(err);
   }
 });
-// get user stats
 
 module.exports = routerFilms;
