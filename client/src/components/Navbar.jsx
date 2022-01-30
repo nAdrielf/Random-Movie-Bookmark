@@ -19,6 +19,7 @@ const Wrapper = styled.div`
   ${mobile({ justifyContent: 'space-around', margin: '0px' })}
 `;
 const Left = styled.div``;
+
 const Center = styled.div`
   flex: 1;
   display: flex;
